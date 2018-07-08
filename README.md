@@ -1,11 +1,39 @@
-# README
+# KISS2U
+Keep It Simple, Stupid To You
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+使用 hmac 认证提交的数据
 
-Things you may want to cover:
+具体需求：
 
-* Ruby version
+https://github.com/archlinuxcn/repo/issues/794
+
+
+### Interface
+Interface       | Function             | Other
+--------------- | -------------------- | -------
+GET: /packages  | 获取全部包状态       | Have cors
+POST: /packages | 提交包状态           | Requirement Hmac auth
+
+
+
+### Test
+
+```sh
+# install postgresql
+bundle install
+rails db:setup
+export KISS2U_AUTH_KEY=key
+
+rails server
+
+sh kiss2u.sh
+```
+
+kiss2u System:
+
+* Ruby 2.5.0
+
+* Rails 5.2.0
 
 * System dependencies
 
