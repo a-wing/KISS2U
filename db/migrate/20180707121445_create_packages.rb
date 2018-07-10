@@ -6,8 +6,8 @@ class CreatePackages < ActiveRecord::Migration[5.2]
       t.datetime  :latest_build_time
       t.boolean   :building_status
       t.integer   :building_time
-      t.integer   :successful_counts
-      t.integer   :failed_counts
+      t.integer   :successful_counts, null: false, default: 0
+      t.integer   :failed_counts, null: false, default: 0
 
       t.timestamps
     end

@@ -5,9 +5,16 @@ class PackagesController < ApplicationController
 
   def create
     return if request.headers[:HTTP_X_SIGNTURE] != OpenSSL::HMAC.hexdigest("SHA256", ENV['KISS2U_AUTH_KEY'], "data_base64=#{params[:data_base64]}")
-    #debugger
-    package = Package.new(pkgInfo)
-    package.save
+
+    @pkg = Package.find_by(pkgname: pkgInfo[:pkgname])
+    if @pkg
+      @pkg.update pkgInfo
+      package = createLog @pkg
+      #debugger
+    else
+      package = Package.new(pkgInfo)
+      package.save
+    end
     render json: package
   end
 
@@ -26,5 +33,12 @@ class PackagesController < ApplicationController
         building_status: data.split.drop(3).to_s =~ /successful/ ? true : false,
         building_time: data.split.drop(3).to_s =~ /after/ ? data.split[-1].split("s")[0].to_i : 0
       }
+    end
+
+    def createLog updatePkg = @pkg
+      (pkg = pkgInfo).delete :pkgname
+      build_log = updatePkg.package_build_log.build pkg
+      build_log.save
+      build_log
     end
 end

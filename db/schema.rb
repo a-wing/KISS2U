@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_07_121445) do
+ActiveRecord::Schema.define(version: 2018_07_10_122736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "package_build_logs", force: :cascade do |t|
+    t.bigint "package_id"
+    t.string "pkgver"
+    t.datetime "latest_build_time"
+    t.boolean "building_status"
+    t.integer "building_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["package_id"], name: "index_package_build_logs_on_package_id"
+  end
 
   create_table "packages", force: :cascade do |t|
     t.string "pkgname"
@@ -21,8 +32,8 @@ ActiveRecord::Schema.define(version: 2018_07_07_121445) do
     t.datetime "latest_build_time"
     t.boolean "building_status"
     t.integer "building_time"
-    t.integer "successful_counts"
-    t.integer "failed_counts"
+    t.integer "successful_counts", default: 0, null: false
+    t.integer "failed_counts", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
