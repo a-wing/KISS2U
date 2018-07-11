@@ -9,12 +9,14 @@ class PackagesController < ApplicationController
     @pkg = Package.find_by(pkgname: pkgInfo[:pkgname])
     if @pkg
       @pkg.update pkgInfo
-      package = createLog @pkg
       #debugger
     else
-      package = Package.new(pkgInfo)
-      package.save
+      @pkg = Package.new(pkgInfo)
+      @pkg.save
     end
+
+    package = createLog @pkg
+
     render json: package
   end
 
@@ -36,6 +38,13 @@ class PackagesController < ApplicationController
     end
 
     def createLog updatePkg = @pkg
+
+      # Filter duplicate log
+      return if PackageBuildLog.find_by latest_build_time: pkgInfo[:latest_build_time]
+
+      #debugger
+      pkgInfo[:building_status] ? updatePkg.update(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update(failed_counts: updatePkg.failed_counts + 1)
+
       (pkg = pkgInfo).delete :pkgname
       build_log = updatePkg.package_build_log.build pkg
       build_log.save
