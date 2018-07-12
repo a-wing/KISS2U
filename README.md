@@ -9,10 +9,11 @@ https://github.com/archlinuxcn/repo/issues/794
 
 
 ### Interface
-Interface       | Function             | Other
---------------- | -------------------- | -------
-GET: /packages  | 获取全部包状态       | Have cors
-POST: /packages | 提交包状态           | Requirement Hmac auth
+Interface                 | Function             | Other
+------------------------- | -------------------- | -------
+GET:  /packages           | 获取全部包状态       | Have cors
+GET:  /packages/:pkgname  | 获取指定包的全部日志 |
+POST: /packages           | 提交包状态           | Requirement Hmac auth
 
 
 

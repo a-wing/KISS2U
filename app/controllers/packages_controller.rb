@@ -3,6 +3,14 @@ class PackagesController < ApplicationController
     render json: Package.all
   end
 
+  def show
+    pkg = Package.find_by pkgname: params[:id]
+    render json: {
+      latest: pkg,
+      log: pkg.package_build_log
+    }
+  end
+
   def create
     return if request.headers[:HTTP_X_SIGNTURE] != OpenSSL::HMAC.hexdigest("SHA256", ENV['KISS2U_AUTH_KEY'], "data_base64=#{params[:data_base64]}")
 
