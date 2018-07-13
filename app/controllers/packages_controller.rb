@@ -36,11 +36,12 @@ class PackagesController < ApplicationController
 
       {
         pkgname: data.split[2],
-        pkgver: data.split.drop(3).reverse.drop(data.split.drop(3).to_s =~ /after/ ? 3 : 1).reverse.join(' '),
         #pkgver: data.split[3],
+        # 考虑到版本号可能会有空格的情况
+        pkgver: data.split.drop(3).reverse.drop(data.split.drop(3).to_s =~ /after/ ? 3 : 1).reverse.join(' '),
         #latest_build_time: data.split("]")[0].split("[")[1],
         latest_build_time: DateTime.parse(data.split("]")[0].split("[")[1] + "+08:00"),
-        building_status: data.split.drop(3).to_s =~ /successful/ ? true : false,
+        building_ok: data.split.drop(3).to_s =~ /successful/ ? true : false,
         building_time: data.split.drop(3).to_s =~ /after/ ? data.split[-1].split("s")[0].to_i : 0
       }
     end
@@ -51,7 +52,7 @@ class PackagesController < ApplicationController
       return if PackageBuildLog.find_by latest_build_time: pkgInfo[:latest_build_time]
 
       #debugger
-      pkgInfo[:building_status] ? updatePkg.update(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update(failed_counts: updatePkg.failed_counts + 1)
+      pkgInfo[:building_ok] ? updatePkg.update(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update(failed_counts: updatePkg.failed_counts + 1)
 
       (pkg = pkgInfo).delete :pkgname
       build_log = updatePkg.package_build_log.build pkg

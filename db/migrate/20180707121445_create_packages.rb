@@ -4,7 +4,7 @@ class CreatePackages < ActiveRecord::Migration[5.2]
       t.string    :pkgname
       t.string    :pkgver
       t.datetime  :latest_build_time
-      t.boolean   :building_status
+      t.boolean   :building_ok
       t.integer   :building_time
       t.integer   :successful_counts, null: false, default: 0
       t.integer   :failed_counts, null: false, default: 0

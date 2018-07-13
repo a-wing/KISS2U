@@ -4,7 +4,7 @@ class CreatePackageBuildLogs < ActiveRecord::Migration[5.2]
       t.belongs_to:package
       t.string    :pkgver
       t.datetime  :latest_build_time
-      t.boolean   :building_status
+      t.boolean   :building_ok
       t.integer   :building_time
 
       t.timestamps

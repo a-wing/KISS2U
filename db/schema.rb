@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2018_07_10_122736) do
     t.bigint "package_id"
     t.string "pkgver"
     t.datetime "latest_build_time"
-    t.boolean "building_status"
+    t.boolean "building_ok"
     t.integer "building_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_07_10_122736) do
     t.string "pkgname"
     t.string "pkgver"
     t.datetime "latest_build_time"
-    t.boolean "building_status"
+    t.boolean "building_ok"
     t.integer "building_time"
     t.integer "successful_counts", default: 0, null: false
     t.integer "failed_counts", default: 0, null: false
