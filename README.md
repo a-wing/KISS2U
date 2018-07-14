@@ -23,7 +23,7 @@ POST: /packages           | 提交包状态           | Requirement Hmac auth
 - [x] latest 表，`successful` or `failed` 次数
 
 
-* Ruby 2.5.0
+* Ruby 2.5.1
 * Rails 5.2.0
 
 ### Database
