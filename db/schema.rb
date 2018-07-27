@@ -12,11 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2018_07_10_122736) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "package_build_logs", force: :cascade do |t|
-    t.bigint "package_id"
+    t.integer "package_id"
     t.string "pkgver"
     t.datetime "latest_build_time"
     t.boolean "building_ok"
