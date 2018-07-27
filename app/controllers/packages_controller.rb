@@ -1,6 +1,6 @@
 class PackagesController < ApplicationController
   def index
-    render json: Package.all
+    render json: Package.all.order(latest_build_time: :desc)
   end
 
   def show
