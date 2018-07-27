@@ -1,0 +1,16 @@
+app/
+bin/
+config/
+db/
+lib/
+log/
+public/
+tmp/
+vendor/
+config.ru
+full_log2server.sh
+Gemfile
+Gemfile.lock
+inotifywait.sh
+Rakefile
+run-dist.sh
