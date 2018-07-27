@@ -5,6 +5,12 @@ rvm:
 addons:
   ssh_known_hosts: build.archlinuxcn.org
 
+services:
+    - postgresql
+
+before_script:
+  - psql -c 'create database kiss2u_test;' -U postgres
+
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_1adf1ad1cb9b_key -iv $encrypted_1adf1ad1cb9b_iv -in deploy_rsa.enc -out deploy_rsa -d
   - eval "$(ssh-agent -s)"
