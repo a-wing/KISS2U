@@ -1,6 +1,8 @@
 # KISS2U
 Keep It Simple, Stupid To You
 
+[![Build Status](https://travis-ci.org/a-wing/KISS2U.svg?branch=master)](https://travis-ci.org/a-wing/KISS2U)
+
 使用 hmac 认证提交的数据
 
 具体需求：
@@ -39,11 +41,11 @@ export KISS2U_AUTH_KEY=key
 
 rails server
 
-sh kiss2u.sh
+sh run.sh
 ```
 
 ## Todo
-- [ ] 监听发送日志脚本 `kiss2u.sh`
-- [ ] 前端显示界面
+- [x] 监听发送日志脚本 `inotifywait.sh`
+- [x] 前端显示界面 [KISS2UI](https://github.com/a-wing/KISS2UI)
 - [ ] .....还有神马？？？
 
