@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
-KISS2U_AUTH_KEY=
-RAILS_ENV=
+export KISS2U_AUTH_KEY=
+export RAILS_ENV=
+export SECRET_KEY_BASE=
 PORT=
-SECRET_KEY_BASE=
