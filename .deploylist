@@ -13,4 +13,5 @@ Gemfile
 Gemfile.lock
 inotifywait.sh
 Rakefile
-run-dist.sh
+run.sh
+config-dist.sh

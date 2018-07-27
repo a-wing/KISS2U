@@ -1,17 +1,15 @@
 #!/bin/bash
-export KISS2U_AUTH_KEY=
-export RAILS_ENV=
-export PORT=
-#export POSTGRESQL_DATABASE_PASSWORD=
-export SECRET_KEY_BASE=
 
+# KISS2U_AUTH_KEY=
+# RAILS_ENV=
+# PORT=
+# POSTGRESQL_DATABASE_PASSWORD=
+# SECRET_KEY_BASE=
 
-echo $RAILS_ENV
-pwd
+source ./config.sh
+
+echo RAILS_ENV=${RAILS_ENV}
 ruby -v
-
-cd KISS2U/
-pwd
 
 if test -e tmp/pids/server.pid
 then

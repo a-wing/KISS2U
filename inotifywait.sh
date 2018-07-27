@@ -3,8 +3,11 @@
 echo $1
 FILE=$1
 
-KISS2U_AUTH_KEY="key"
-URL="localhost:3000/packages"
+#KISS2U_AUTH_KEY="key"
+#URL="localhost:3000/packages"
+source ./config.sh
+
+URL="localhost:${PORT}/packages"
 
 while /usr/bin/inotifywait -e modify ${FILE};
 do

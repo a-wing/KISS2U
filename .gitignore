@@ -18,4 +18,4 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-run.sh
+config.sh

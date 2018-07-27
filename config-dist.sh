@@ -1,0 +1,6 @@
+#!/bin/bash
+
+KISS2U_AUTH_KEY=
+RAILS_ENV=
+PORT=
+SECRET_KEY_BASE=
