@@ -7,7 +7,7 @@ class PackagesController < ApplicationController
     pkg = Package.find_by pkgname: params[:id]
     render json: {
       latest: pkg,
-      log: pkg.package_build_log
+      log: pkg.package_build_log.order(latest_build_time: :desc)
     }
   end
 
