@@ -9,6 +9,9 @@ Keep It Simple, Stupid To You
 
 https://github.com/archlinuxcn/repo/issues/794
 
+详细信息：
+
+https://a-wing.top/archlinux/2018/08/05/kiss2u.html
 
 ### Interface
 Interface                 | Function             | Other
@@ -29,23 +32,22 @@ POST: /packages           | 提交包状态           | Requirement Hmac auth
 * Rails 5.2.0
 
 ### Database
-> rails 自带的`action_record`几乎支持所用的主流数据库。。。我是在`postgresql`开发测试的。。所以推荐
+> rails 自带的`action_record`几乎支持所用的主流数据库。。。~~我是在`postgresql`开发测试的。。所以推荐~~ 目前用SQLite3
 
 ### Test
 
 ```sh
-# install postgresql
 bundle install
 rails db:setup
 export KISS2U_AUTH_KEY=key
 
 rails server
 
-sh run.sh
 ```
 
 ## Todo
 - [x] 监听发送日志脚本 `inotifywait.sh`
 - [x] 前端显示界面 [KISS2UI](https://github.com/a-wing/KISS2UI)
+- [ ] Orphaning Package
 - [ ] .....还有神马？？？
 
