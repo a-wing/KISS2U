@@ -1,0 +1,12 @@
+[Unit]
+Description=KISS2U Puma application server
+After=network.target
+
+[Service]
+WorkingDirectory=<DIR>
+Environment=RAILS_ENV=production KISS2U_AUTH_KEY=<KEY>
+PIDFile=<DIR>/tmp/pids/puma.pid
+ExecStart=<BUNDLE> exec rails server
+
+[Install]
+WantedBy=default.target
