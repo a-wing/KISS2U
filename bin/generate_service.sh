@@ -1,14 +1,17 @@
 #!/bin/bash
 source ./config.sh
 
-cp config/kiss2u.service.template kiss2u.service
-sed -i s#\<KEY\>#`echo $KISS2U_AUTH_KEY`#g kiss2u.service
-sed -i s#\<DIR\>#`pwd`#g kiss2u.service
-sed -i s#\<BUNDLE\>#`which bundle`#g kiss2u.service
+SYSTEMD=kiss2u.service
+
+cp config/${SYSTEMD}.template ${SYSTEMD}
+sed -i s#\<KEY\>#`echo $KISS2U_AUTH_KEY`#g ${SYSTEMD}
+sed -i s#\<DIR\>#`pwd`#g ${SYSTEMD}
+sed -i s#\<BUNDLE\>#`which bundle`#g ${SYSTEMD}
 
 
-echo "Install ~/.config/systemd/user/kiss2u.service"
-echo "Please Run: systemctl --user start kiss2u"
+echo "Install ~/.config/systemd/user/${SYSTEMD}"
+echo "Please Run: systemctl --user start ${SYSTEMD}"
 
-install kiss2u.service -t ~/.config/systemd/user/
-rm kiss2u.service
+install ${SYSTEMD} -t ~/.config/systemd/user/
+install ${SYSTEMD} -D ~/.config/systemd/user/${SYSTEMD}
+rm ${SYSTEMD}
