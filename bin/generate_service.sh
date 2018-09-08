@@ -12,6 +12,5 @@ sed -i s#\<BUNDLE\>#`which bundle`#g ${SYSTEMD}
 echo "Install ~/.config/systemd/user/${SYSTEMD}"
 echo "Please Run: systemctl --user start ${SYSTEMD}"
 
-install ${SYSTEMD} -t ~/.config/systemd/user/
 install ${SYSTEMD} -D ~/.config/systemd/user/${SYSTEMD}
 rm ${SYSTEMD}
