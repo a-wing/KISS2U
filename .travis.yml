@@ -10,6 +10,7 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - chmod 600 deploy_rsa
   - ssh-add deploy_rsa
+  - sed -i 's#port        ENV.fetch("PORT") { 3000 }#bind        "unix://\#{Rails.root}/tmp/sockets/puma.sock"#g' config/puma.rb
 
 deploy:
   - provider: script
