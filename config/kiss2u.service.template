@@ -1,6 +1,7 @@
 [Unit]
 Description=KISS2U Puma application server
 After=network.target
+Wants=lilackiss.service
 
 [Service]
 WorkingDirectory=<DIR>

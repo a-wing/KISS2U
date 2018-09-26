@@ -1,0 +1,10 @@
+[Unit]
+Description=lilac and kiss2u bridging server
+After=network.target
+
+[Service]
+WorkingDirectory=<DIR>
+ExecStart=<DIR>/bin/lilackiss
+
+[Install]
+WantedBy=default.target

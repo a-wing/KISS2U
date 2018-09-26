@@ -30,6 +30,7 @@ POST: /packages           | 提交包状态           | Requirement Hmac auth
 
 * Ruby 2.5.1
 * Rails 5.2.0
+* inotify-tools
 
 ### Database
 > rails 自带的`action_record`几乎支持所用的主流数据库。。。~~我是在`postgresql`开发测试的。。所以推荐~~ 目前用SQLite3
@@ -46,7 +47,7 @@ rails server
 ```
 
 ## Todo
-- [x] 监听发送日志脚本 `inotifywait.sh`
+- [x] 监听发送日志脚本 `bin/lilackiss`
 - [x] 前端显示界面 [KISS2UI](https://github.com/a-wing/KISS2UI)
 - [ ] Orphaning Package
 - [ ] .....还有神马？？？
