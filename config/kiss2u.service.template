@@ -5,7 +5,8 @@ Wants=lilackiss.service
 
 [Service]
 WorkingDirectory=<DIR>
-Environment=RAILS_ENV=production KISS2U_AUTH_KEY=<KEY>
+Environment=RAILS_ENV=production KISS2U_AUTH_KEY=<KISS2U_AUTH_KEY>
+Environment=SECRET_KEY_BASE=<SECRET_KEY_BASE>
 PIDFile=<DIR>/tmp/pids/puma.pid
 ExecStart=<BUNDLE> exec rails server
 

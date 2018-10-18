@@ -4,7 +4,8 @@ source ./config.sh
 SYSTEMD=kiss2u.service
 
 cp config/${SYSTEMD}.template ${SYSTEMD}
-sed -i s#\<KEY\>#`echo $KISS2U_AUTH_KEY`#g ${SYSTEMD}
+sed -i s#\<KISS2U_AUTH_KEY\>#`echo $KISS2U_AUTH_KEY`#g ${SYSTEMD}
+sed -i s#\<SECRET_KEY_BASE\>#`echo $SECRET_KEY_BASE`#g ${SYSTEMD}
 sed -i s#\<DIR\>#`pwd`#g ${SYSTEMD}
 sed -i s#\<BUNDLE\>#`which bundle`#g ${SYSTEMD}
 
