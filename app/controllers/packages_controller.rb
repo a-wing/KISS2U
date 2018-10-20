@@ -38,7 +38,7 @@ class PackagesController < ApplicationController
         pkgname: data.split[2],
         #pkgver: data.split[3],
         # 考虑到版本号可能会有空格的情况
-        pkgver: data.split.drop(3).reverse.drop(data.split.drop(3).to_s =~ /after/ ? 3 : 1).reverse.join(' '),
+        pkgver: data.split.drop(3).reverse.drop(data.split.drop(3).to_s =~ /after/ ? 3 : 1).reverse.join(' ').gsub(/.*\[/, '').gsub(/\]/, ''),
         #latest_build_time: data.split("]")[0].split("[")[1],
         latest_build_time: DateTime.parse(data.split("]")[0].split("[")[1] + "+08:00"),
         building_ok: data.split.drop(3).to_s =~ /successful/ ? true : false,
