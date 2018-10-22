@@ -23,6 +23,11 @@ chdir APP_ROOT do
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
 
+  puts "\n== Rewrite systemd --user =="
+  system! 'bin/generate_service.sh'
+  system! 'systemctl --user daemon-reload'
+
   puts "\n== Restarting application server =="
-  system! 'bin/rails restart'
+  #system! 'bin/rails restart'
+  system! 'systemctl --user restart kiss2u.service'
 end
