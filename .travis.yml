@@ -15,7 +15,7 @@ before_deploy:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: cat .deploylist | xargs tar -cJf - | ssh a-wing@build.archlinuxcn.org 'mkdir -p .srv/KISS2U && cd .srv/KISS2U && tar -xJf - && bin/update'
+    script: cat .deploylist | xargs tar -cJf - | ssh a-wing@build.archlinuxcn.org 'mkdir -p .srv/KISS2U && cd .srv/KISS2U && tar -xJf - && bin/update.sh'
     on:
       branch: master
 
