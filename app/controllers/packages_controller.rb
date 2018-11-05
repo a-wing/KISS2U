@@ -28,6 +28,14 @@ class PackagesController < ApplicationController
     render json: package
   end
 
+  def cleanup
+    PackagesCleanupJob.perform_later
+
+    render json: {
+      status: :cleaning
+    }
+  end
+
   private
     def pkgInfo data = Base64.decode64(params[:data_base64])
       #debugger
