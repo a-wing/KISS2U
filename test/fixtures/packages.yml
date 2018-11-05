@@ -1,11 +1,24 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+python-git:
+  id: 1
+  pkgname: "python-git"
+  pkgver: "20180707.062835"
+  latest_build_time: "2018-07-07T10:12:17.000Z"
+  building_ok: true
+  building_time: 292
+  successful_counts: 1
+  failed_counts: 0
+
+blender-2.8-git:
+  id: 2
+  pkgname: "blender-2.8-git"
+  pkgver: "2.8_r81639.500fbfd02a1-1"
+  latest_build_time: "2018-10-30T12:10:41.000Z"
+  building_ok: true
+  building_time: 470
+  successful_counts: 1
+  failed_counts: 0
+
+
+random: {}

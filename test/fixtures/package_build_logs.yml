@@ -1,11 +1,16 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+blender-2.8-git_log_1:
+  package_id: 2
+  pkgver: "2.8_r81639.500fbfd02a1-1"
+  latest_build_time: "2018-10-30T12:10:41.000Z"
+  building_ok: true
+  building_time: 470
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
+blender-2.8-git_log_2:
+  package_id: 2
+  pkgver: "2.9_r81639.500fbfd02a1-1"
+  latest_build_time: "2018-11-30T12:10:41.000Z"
+  building_ok: true
+  building_time: 470
+
 two: {}
 # column: value
