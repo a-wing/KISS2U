@@ -10,7 +10,7 @@ FILE=${LILAC_LOG}
 
 echo ${FILE}
 
-URL="localhost${PORT+":${PORT}"}/packages"
+URL="localhost${PORT+":${PORT}"}/api/packages"
 UNIX_SOCK=${SOCK+"--unix-socket ${SOCK}"}
 
 echo "========= Debuger ============"

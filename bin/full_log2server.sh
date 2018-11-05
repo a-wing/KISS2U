@@ -10,7 +10,7 @@ cp $1 ${FILE}
 #URL="localhost:3000/packages"
 source ./config.sh
 
-URL="localhost:${PORT}/packages"
+URL="localhost:${PORT}/api/packages"
 
 while ((`cat ${FILE}|wc -l` >= 1))
 do
