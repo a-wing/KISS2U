@@ -1,7 +1,10 @@
 # KISS2U
+
 Keep It Simple, Stupid To You
 
 [![Build Status](https://travis-ci.org/a-wing/KISS2U.svg?branch=master)](https://travis-ci.org/a-wing/KISS2U)
+
+[![codecov](https://codecov.io/gh/a-wing/KISS2U/branch/master/graph/badge.svg)](https://codecov.io/gh/a-wing/KISS2U)
 
 使用 hmac 认证提交的数据
 
