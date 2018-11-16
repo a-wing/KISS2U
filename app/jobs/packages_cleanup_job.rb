@@ -7,7 +7,9 @@ class PackagesCleanupJob < ApplicationJob
   def perform(*args)
     if (list = get_list).length > 0
       orphan_lists = fliter_orphans(list)
-      orphan_lists.each { |pkgname| Package.find_by(pkgname: pkgname).destroy }
+
+      Package.where(pkgname: orphan_lists).destroy_all
+
       logger.info "Cleanup orphans package: #{orphan_lists}"
     end
   end
