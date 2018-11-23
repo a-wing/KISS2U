@@ -29,11 +29,22 @@ class PackagesController < ApplicationController
   end
 
   def cleanup
-    PackagesCleanupJob.perform_later
+    time_now = Time.new
+    #@@clean_time ||= time_now
 
-    render json: {
-      status: :cleaning
-    }
+    # 调用频次限制 (s)
+    if time_now - (@@clean_time ||= time_now) > 3600
+      @@clean_time = time_now
+
+      PackagesCleanupJob.perform_later
+      render json: {
+        status: :cleaning
+      }
+    else
+      render json: {
+        status: "Please wait #{time_now - @@clean_time} s"
+      }
+    end
   end
 
   private
