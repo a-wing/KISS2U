@@ -12,7 +12,7 @@ class PackagesController < ApplicationController
   end
 
   def create
-    return if request.headers[:HTTP_X_SIGNTURE] != OpenSSL::HMAC.hexdigest("SHA256", ENV['KISS2U_AUTH_KEY'], "data_base64=#{params[:data_base64]}")
+    return if request.headers[:HTTP_X_SIGNTURE] != OpenSSL::HMAC.hexdigest("SHA256", ENV['KISS2U_AUTH_KEY'] || '', "data_base64=#{params[:data_base64]}")
 
     @pkg = Package.find_by(pkgname: pkgInfo[:pkgname])
     if @pkg
