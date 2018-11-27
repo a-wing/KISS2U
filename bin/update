@@ -29,5 +29,5 @@ chdir APP_ROOT do
 
   puts "\n== Restarting application server =="
   #system! 'bin/rails restart'
-  system! 'systemctl --user restart kiss2u.service'
+  system! 'systemctl --user reload kiss2u.service'
 end
