@@ -33,7 +33,9 @@ class PackagesController < ApplicationController
     #@@clean_time ||= time_now
 
     # 调用频次限制 (s)
-    if time_now - (@@clean_time ||= time_now) > 3600
+    time_interval = 3600
+
+    if time_now - (@@clean_time ||= time_now) > time_interval
       @@clean_time = time_now
 
       PackagesCleanupJob.perform_later
@@ -42,7 +44,7 @@ class PackagesController < ApplicationController
       }
     else
       render json: {
-        status: "Please wait #{time_now - @@clean_time} s"
+        status: "Please wait #{time_interval - (time_now - @@clean_time)} s"
       }
     end
   end
