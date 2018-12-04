@@ -15,17 +15,15 @@ class PackagesController < ApplicationController
     return if request.headers[:HTTP_X_SIGNTURE] != OpenSSL::HMAC.hexdigest("SHA256", ENV['KISS2U_AUTH_KEY'] || '', "data_base64=#{params[:data_base64]}")
 
     @pkg = Package.find_by(pkgname: pkgInfo[:pkgname])
-    if @pkg
-      @pkg.update pkgInfo
-      #debugger
-    else
+    unless @pkg
       @pkg = Package.new(pkgInfo)
       @pkg.save
     end
 
-    package = createLog @pkg
+    update_counts @pkg
+    @pkg.update pkgInfo
 
-    render json: package
+    render json: @pkg
   end
 
   def cleanup
@@ -67,17 +65,14 @@ class PackagesController < ApplicationController
       }
     end
 
-    def createLog updatePkg = @pkg
+    def update_counts updatePkg = @pkg
 
       # Filter duplicate log
       return if PackageBuildLog.find_by latest_build_time: pkgInfo[:latest_build_time]
 
       #debugger
-      pkgInfo[:building_ok] ? updatePkg.update(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update(failed_counts: updatePkg.failed_counts + 1)
+      #pkgInfo[:building_ok] ? updatePkg.update(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update(failed_counts: updatePkg.failed_counts + 1)
+      pkgInfo[:building_ok] ? updatePkg.update_columns(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update_columns(failed_counts: updatePkg.failed_counts + 1)
 
-      (pkg = pkgInfo).delete :pkgname
-      build_log = updatePkg.package_build_log.build pkg
-      build_log.save
-      build_log
     end
 end
