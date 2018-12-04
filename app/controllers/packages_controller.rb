@@ -1,4 +1,6 @@
 class PackagesController < ApplicationController
+  before_action :filter_repetition, only: [:create]
+
   def index
     render json: Package.all.order(latest_build_time: :desc)
   end
@@ -14,16 +16,14 @@ class PackagesController < ApplicationController
   def create
     return if request.headers[:HTTP_X_SIGNTURE] != OpenSSL::HMAC.hexdigest("SHA256", ENV['KISS2U_AUTH_KEY'] || '', "data_base64=#{params[:data_base64]}")
 
-    @pkg = Package.find_by(pkgname: pkgInfo[:pkgname])
-    unless @pkg
-      @pkg = Package.new(pkgInfo)
-      @pkg.save
+    pkg_info = pkgInfo
+    unless pkg = Package.find_by(pkgname: pkg_info[:pkgname])
+      (pkg = Package.new(pkg_info)).save
     end
 
-    update_counts @pkg
-    @pkg.update pkgInfo
+    pkg.update pkg_info
 
-    render json: @pkg
+    render json: pkg
   end
 
   def cleanup
@@ -65,14 +65,11 @@ class PackagesController < ApplicationController
       }
     end
 
-    def update_counts updatePkg = @pkg
-
-      # Filter duplicate log
-      return if PackageBuildLog.find_by latest_build_time: pkgInfo[:latest_build_time]
-
-      #debugger
-      #pkgInfo[:building_ok] ? updatePkg.update(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update(failed_counts: updatePkg.failed_counts + 1)
-      pkgInfo[:building_ok] ? updatePkg.update_columns(successful_counts: updatePkg.successful_counts + 1) : updatePkg.update_columns(failed_counts: updatePkg.failed_counts + 1)
-
+    def filter_repetition
+      if PackageBuildLog.find_by latest_build_time: pkgInfo[:latest_build_time]
+        render json: {
+          status: :repetition
+        }
+      end
     end
 end
